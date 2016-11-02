@@ -11,17 +11,17 @@ Pod::Spec.new do |s|
   s.name         = "LYModelFilter"
   s.version      = "1.0.0"
   s.summary      = "LYModelFilter makes it easy to deal with Array data such as mapping, filtering, comparing."
-  s.description  = "LYModelFilter makes it easy to deal with Array data such as mapping, filtering, comparing."
+  # s.description  = "LYModelFilter makes it easy to deal with Array data such as mapping, filtering, comparing."
 
   s.homepage     = "https://github.com/happyingly/LYModelFilter"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
   s.license      = "MIT"
   s.author             = { "LongYi" => "joylong.ly@gmail.com" }
-  s.platform     = :ios
-  s.source       = { :git => "https://github.com/happyingly/LYModelFilter", :tag => "#{s.version}" }
+  s.platform     = :ios, '7.0'
+  s.source       = { :git => "https://github.com/happyingly/LYModelFilter.git", :tag => "#{s.version}" }
 
-  s.source_files  = "LYModelFilter/*.{h,m}"
+  s.source_files  = "LYModelFilter/LYModelFilter/*.{h,m}"
 
 
   # s.public_header_files = "Classes/**/*.h"
