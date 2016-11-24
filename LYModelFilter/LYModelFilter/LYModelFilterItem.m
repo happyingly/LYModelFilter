@@ -39,107 +39,98 @@
 }
 
 - (LYModelFilterItem *(^)(NSString *property_name))property {
-    __weak LYModelFilterItem *weakSelf = self;
     return ^(NSString *property_name) {
         LYModelAttribute *item = [[LYModelAttribute alloc] init];
         item.type = LYModelAttributeTypeProperty;
         item.value = property_name;
-        weakSelf.firstAttr = item;
+        self.firstAttr = item;
         return self;
     };
 }
 
 - (LYModelFilterItem *(^)(id value))equalTo {
-    __weak LYModelFilterItem *weakSelf = self;
     return ^(id value) {
         LYModelAttribute *item = [[LYModelAttribute alloc] init];
         item.type = LYModelAttributeTypeValue;
         item.value = value;
         self.secondAttr = item;
-        weakSelf.equationType = LYModelFilterItemEquationTypeEqual;
+        self.equationType = LYModelFilterItemEquationTypeEqual;
         return self;
     };
 }
 - (LYModelFilterItem *(^)(id value))largeTo {
-    __weak LYModelFilterItem *weakSelf = self;
     return ^(id value) {
         LYModelAttribute *item = [[LYModelAttribute alloc] init];
         item.type = LYModelAttributeTypeValue;
         item.value = value;
         self.secondAttr = item;
-        weakSelf.equationType = LYModelFilterItemEquationTypeLarge;
+        self.equationType = LYModelFilterItemEquationTypeLarge;
         return self;
     };
 }
 
 - (LYModelFilterItem *(^)(id value))smallTo {
-    __weak LYModelFilterItem *weakSelf = self;
     return ^(id value) {
         LYModelAttribute *item = [[LYModelAttribute alloc] init];
         item.type = LYModelAttributeTypeValue;
         item.value = value;
         self.secondAttr = item;
-        weakSelf.equationType = LYModelFilterItemEquationTypeSmall;
+        self.equationType = LYModelFilterItemEquationTypeSmall;
         return self;
     };
 }
 
 - (LYModelFilterItem *(^)(id value))largeOrEqualTo {
-    __weak LYModelFilterItem *weakSelf = self;
     return ^(id value) {
         LYModelAttribute *item = [[LYModelAttribute alloc] init];
         item.type = LYModelAttributeTypeValue;
         item.value = value;
         self.secondAttr = item;
-        weakSelf.equationType = LYModelFilterItemEquationTypeLargeOrEqual;
+        self.equationType = LYModelFilterItemEquationTypeLargeOrEqual;
         return self;
     };
 }
 
 - (LYModelFilterItem *(^)(id value))smallOrEqualTo {
-    __weak LYModelFilterItem *weakSelf = self;
     return ^(id value) {
         LYModelAttribute *item = [[LYModelAttribute alloc] init];
         item.type = LYModelAttributeTypeValue;
         item.value = value;
         self.secondAttr = item;
-        weakSelf.equationType = LYModelFilterItemEquationTypeSmallOrEqual;
+        self.equationType = LYModelFilterItemEquationTypeSmallOrEqual;
         return self;
     };
 }
 
 - (LYModelFilterItem *(^)(NSString *property_name))max {
-    __weak LYModelFilterItem *weakSelf = self;
     return ^(NSString *property_name) {
         LYModelAttribute *item = [[LYModelAttribute alloc] init];
         item.type = LYModelAttributeTypeProperty;
         item.value = property_name;
-        weakSelf.firstAttr = item;
-        weakSelf.equationType = LYModelFilterItemEquationTypeMax;
+        self.firstAttr = item;
+        self.equationType = LYModelFilterItemEquationTypeMax;
         return self;
     };
 }
 
 - (LYModelFilterItem *(^)(NSString *property_name))min {
-    __weak LYModelFilterItem *weakSelf = self;
     return ^(NSString *property_name) {
         LYModelAttribute *item = [[LYModelAttribute alloc] init];
         item.type = LYModelAttributeTypeProperty;
         item.value = property_name;
-        weakSelf.firstAttr = item;
-        weakSelf.equationType = LYModelFilterItemEquationTypeMin;
+        self.firstAttr = item;
+        self.equationType = LYModelFilterItemEquationTypeMin;
         return self;
     };
 }
 
 - (LYModelFilterItem *(^)(LYModelFilterItemCustomBlock block, id value))custom {
-    __weak LYModelFilterItem *weakSelf = self;
     return ^(LYModelFilterItemCustomBlock block, id value) {
         LYModelAttribute *item = [[LYModelAttribute alloc] init];
         item.block = block;
         item.value = value;
-        weakSelf.secondAttr = item;
-        weakSelf.equationType = LYModelFilterItemCustom;
+        self.secondAttr = item;
+        self.equationType = LYModelFilterItemCustom;
         return self;
     };
 }

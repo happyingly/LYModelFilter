@@ -145,3 +145,8 @@ pod 'LYModelFilter'
     }];
     NSLog(@"boys : %@", boys);
 ```
+
+###3.0其他功能
+```
+支持property(@"a.b.c")的方式来找到嵌套的model的属性
+```
