@@ -16,7 +16,8 @@ typedef NS_ENUM(NSInteger, LYModelFilterItemEquationType) {
     LYModelFilterItemEquationTypeLargeOrEqual,
     LYModelFilterItemEquationTypeSmallOrEqual,
     LYModelFilterItemEquationTypeMax,
-    LYModelFilterItemEquationTypeMin
+    LYModelFilterItemEquationTypeMin,
+    LYModelFilterItemCustom,
 };
 
 typedef NS_ENUM(NSInteger, LYModelFilterItemType) {
@@ -37,6 +38,8 @@ typedef NS_ENUM(NSInteger, LYModelFilterItemType) {
 - (LYModelFilterItem *(^)(id value))smallOrEqualTo;
 - (LYModelFilterItem *(^)(NSString *property_name))max;
 - (LYModelFilterItem *(^)(NSString *property_name))min;
+
+- (LYModelFilterItem *(^)(LYModelFilterItemCustomBlock block, id value))custom;
 
 @end
 

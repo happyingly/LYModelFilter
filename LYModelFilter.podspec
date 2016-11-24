@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "LYModelFilter"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "LYModelFilter makes it easy to deal with Array data such as mapping, filtering, comparing."
   # s.description  = "LYModelFilter makes it easy to deal with Array data such as mapping, filtering, comparing."
 

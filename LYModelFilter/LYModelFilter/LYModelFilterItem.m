@@ -23,8 +23,10 @@
     if ([list count] == 0) return nil;
     
     NSMutableArray *propList = [NSMutableArray array];
-    
-    if (self.equationType == LYModelFilterItemEquationTypeMin || self.equationType == LYModelFilterItemEquationTypeMax) {
+    if (self.equationType == LYModelFilterItemCustom) {
+        id arr = [self ly_custom:list];
+        propList = arr;
+    } else if (self.equationType == LYModelFilterItemEquationTypeMin || self.equationType == LYModelFilterItemEquationTypeMax) {
         id result = [self ly__maxOrMinObj:list];
         if (result) {
             [propList addObject:result];
@@ -130,8 +132,43 @@
     };
 }
 
+- (LYModelFilterItem *(^)(LYModelFilterItemCustomBlock block, id value))custom {
+    __weak LYModelFilterItem *weakSelf = self;
+    return ^(LYModelFilterItemCustomBlock block, id value) {
+        LYModelAttribute *item = [[LYModelAttribute alloc] init];
+        item.block = block;
+        item.value = value;
+        weakSelf.secondAttr = item;
+        weakSelf.equationType = LYModelFilterItemCustom;
+        return self;
+    };
+}
 
 #pragma mark - Match
+- (id)ly_custom:(NSArray *)list {
+    NSMutableArray *propList = [NSMutableArray array];
+    
+    NSArray *propertyList = [self.firstAttr.value componentsSeparatedByString:@"."];
+    
+    for (id obj in list) {
+        id value = obj;
+        for (NSString *propertyName in propertyList) {
+            value = [value valueForKey:propertyName];
+            if (value == nil) {
+                break;
+            }
+        }
+        if (value) {
+            BOOL isTrue = self.secondAttr.block(value, self.secondAttr.value);
+            if (isTrue) {
+                [propList addObject:obj];
+            }
+        }
+        
+    }
+    return propList;
+}
+
 - (id)ly__maxOrMinObj:(NSArray *)list {
     NSArray *propertyList = [self.firstAttr.value componentsSeparatedByString:@"."];
     id result = nil;

@@ -76,6 +76,19 @@
         filter.ONE().equalTo(@"new1");
     }];
     NSLog(@"value in temp1 : %@", value);
+    
+    
+    NSArray *boys = [aSchool.students ly_makeRules:^(LYModelFilter *filter) {
+        LYModelFilterItemCustomBlock block = ^BOOL(id left , id right) {
+            if ([left rangeOfString:right].location != NSNotFound) {
+                return YES;
+            }
+            return NO;
+        };
+        
+        filter.ONE().property(@"name").custom(block, @"boy");
+    }];
+    NSLog(@"boys : %@", boys);
 }
 
 - (School *)aSchool {
@@ -122,7 +135,7 @@
     student6.student_id = 66666666;
     
     Student *student7 = [[Student alloc] init];
-    student7.name = @"boy7";
+    student7.name = @"girl1";
     student7.age = @12;
     student7.score = 30;
     student7.height = 164;

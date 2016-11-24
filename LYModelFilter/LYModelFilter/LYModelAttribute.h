@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef BOOL(^LYModelFilterItemCustomBlock)(id left, id right);
+
 typedef NS_ENUM(NSInteger, LYModelAttributeType) {
     LYModelAttributeTypeProperty,
     LYModelAttributeTypeValue
@@ -18,5 +20,7 @@ typedef NS_ENUM(NSInteger, LYModelAttributeType) {
 @property (nonatomic, strong) id value;
 
 @property (nonatomic, assign) LYModelAttributeType type;
+
+@property (nonatomic, weak) LYModelFilterItemCustomBlock block;
 
 @end
